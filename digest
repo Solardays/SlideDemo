@@ -1,0 +1,18 @@
+滑动效果的实现：侧拉、侧滑
+1.侧拉：
+2.侧滑:
+  2.1 gallery
+  2.2 viewPager
+  2.3 recyclerView
+
+ 注意：item中用LinearLayout作为容器，除了viewpager中，其他的都会造成item使用真实大小
+
+ ViewPager中ViewPager.PageTransformer ：
+  transformPage(View view, float position)
+  view有两个，如向左滑动，一个向左出的A,一个向左进的B
+  当position < -1，此时position均不代表A页和B页的位置，所以这里我们不做任何的动画出来。
+  当position <= 0，此时position的范围是在0.0 ~-1.0之间，可以认为这是代表A页的运动轨迹，也就是A页移出屏幕外。
+  当position <= 1，此时position的范围是在1.0 ~ 0.0之间，可以认为这是代表B页的运动轨迹，也就是B页移到屏幕上。
+  当position > 1，此时position均不代表A页和B页的位置，所以这里我们不做任何的动画出来。
+
+  为了兼容3.0以下，需要导入NineOldAndroids库，并修改ViewPager源码中的transformPage(View view, float position)方法
